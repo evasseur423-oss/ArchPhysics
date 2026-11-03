@@ -1,0 +1,52 @@
+{
+  "name": "archphysics-studio",
+  "productName": "ArchPhysics Studio",
+  "appId": "com.archphysics.studio",
+  "version": "1.0.0",
+  "description": "Laboratoire d'ingénierie architecturale : bilan thermique (ISO 6946 / ISO 13790) et RDM (Euler-Bernoulli / Eurocodes) sur maquette 3D.",
+  "main": "main.js",
+  "author": "ArchPhysics Studio",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win --x64",
+    "make-icon": "electron tools/make-icon.js"
+  },
+  "dependencies": {
+    "three": "0.165.0",
+    "web-ifc": "^0.0.78"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.archphysics.studio",
+    "productName": "ArchPhysics Studio",
+    "mac": {
+      "target": ["dmg", "zip"],
+      "icon": "icon.png",
+      "category": "public.app-category.graphics-design"
+    },
+    "win": {
+      "target": ["portable", "nsis"],
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ArchPhysics Studio"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.exe"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!**/*.bat"
+    ]
+  }
+}
